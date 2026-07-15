@@ -85,4 +85,4 @@ text = "COMPRAR SERVIDOR"
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyMouseButton" to="Main" method="_on_buy_mouse_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyGpuButton" to="Main" method="_on_buy_gpu_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyNotebookButton" to="Main" method="_on_buy_notebook_button_pressed"]
-[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyServidorButton" to="Main" method="_on_buy_freelancer_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyServidorButton" to="Main" method="_on_buy_servidor_button_pressed"]
