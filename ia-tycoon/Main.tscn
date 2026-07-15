@@ -12,28 +12,13 @@ offset_bottom = 40.0
 script = ExtResource("1_glv2v")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main" unique_id=513027459]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main/ScrollContainer" unique_id=1256449994]
 layout_mode = 2
-
-[node name="TokensLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=406264933]
-layout_mode = 2
-text = "Tokens: 0"
-
-[node name="ClickLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1120490392]
-layout_mode = 2
-text = "Por Clique: 1"
-
-[node name="ProductionLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1898629965]
-layout_mode = 2
-text = "Produção: 0/s"
-
-[node name="TrainButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=1250217049]
-layout_mode = 2
-text = "TREINAR IA"
 
 [node name="MouseLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1478327834]
 layout_mode = 2
@@ -81,8 +66,66 @@ Possui: 0"
 layout_mode = 2
 text = "COMPRAR SERVIDOR"
 
-[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/TrainButton" to="Main" method="_on_train_button_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main" unique_id=31580864]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SidePanel" type="PanelContainer" parent="Main/HBoxContainer" unique_id=392501716]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/HBoxContainer/SidePanel" unique_id=346101039]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1099046927]
+layout_mode = 2
+
+[node name="TokensLabel" type="Label" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=406264933]
+layout_mode = 2
+text = "Tokens: 0"
+
+[node name="ClickLabel" type="Label" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1120490392]
+layout_mode = 2
+text = "Por Clique: 1"
+
+[node name="ProductionLabel" type="Label" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1898629965]
+layout_mode = 2
+text = "Produção: 0/s"
+
+[node name="TrainButton" type="Button" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1250217049]
+layout_mode = 2
+text = "TREINAR IA"
+
+[node name="HSeparator" type="HSeparator" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=671475937]
+layout_mode = 2
+
+[node name="UpgradesButton" type="Button" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1666240104]
+layout_mode = 2
+text = "UPGRADES"
+
+[node name="TalentsButton" type="Button" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=364912919]
+layout_mode = 2
+text = "TALENTOS"
+
+[node name="StatsButton" type="Button" parent="Main/HBoxContainer/SidePanel/VBoxContainer" unique_id=1489698092]
+layout_mode = 2
+text = "ESTATÍSTICAS"
+
+[node name="ContentPanel" type="PanelContainer" parent="Main/HBoxContainer" unique_id=912018449]
+custom_minimum_size = Vector2(898, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/HBoxContainer/ContentPanel" unique_id=978089648]
+layout_mode = 2
+
+[node name="UpgradesContainer" type="VBoxContainer" parent="Main/HBoxContainer/ContentPanel/ScrollContainer" unique_id=1344156132]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyMouseButton" to="Main" method="_on_buy_mouse_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyGpuButton" to="Main" method="_on_buy_gpu_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyNotebookButton" to="Main" method="_on_buy_notebook_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyServidorButton" to="Main" method="_on_buy_servidor_button_pressed"]
+[connection signal="pressed" from="Main/HBoxContainer/SidePanel/VBoxContainer/TrainButton" to="Main" method="_on_train_button_pressed"]

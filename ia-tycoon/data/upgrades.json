@@ -2,6 +2,7 @@
   "mouse": {
 	"name": "Mouse Gamer",
 	"description": "A produtividade aumentou. Sua precisão não.",
+	"visible": true,
 	"cost": 25,
 	"owned": 0,
 	"type": "click",
@@ -12,6 +13,8 @@
   "gpu": {
 	"name": "GPU Usada",
 	"description": "Comprada de um sujeito muito convincente na internet.",
+	"visible": true,
+	"unlocks": "notebook",
 	"cost": 50,
 	"owned": 0,
 	"type": "production",
@@ -22,6 +25,8 @@
   "notebook": {
 	"name": "Notebook Gamer",
 	"description": "Esquenta mais do que produz.",
+	"visible": false,
+	"unlocks": "servidor",
 	"cost": 500,
 	"owned": 0,
 	"type": "production",
@@ -32,6 +37,8 @@
   "servidor": {
 	"name": "Servidor",
 	"description": "Ele nunca dorme. Só trava nos piores momentos.",
+	"visible": false,
+	"unlocks": "datacenter",
 	"cost": 2500,
 	"owned": 0,
 	"type": "production",

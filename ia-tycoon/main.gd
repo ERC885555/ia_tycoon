@@ -4,14 +4,10 @@ extends Control
 # REFERENCES
 # ==========================
 
-@onready var tokens_label = $ScrollContainer/VBoxContainer/TokensLabel
-@onready var click_label = $ScrollContainer/VBoxContainer/ClickLabel
-@onready var production_label = $ScrollContainer/VBoxContainer/ProductionLabel
-
-@onready var mouse_label = $ScrollContainer/VBoxContainer/MouseLabel
-@onready var gpu_label = $ScrollContainer/VBoxContainer/GpuLabel
-@onready var notebook_label = $ScrollContainer/VBoxContainer/NotebookLabel
-@onready var servidor_label = $ScrollContainer/VBoxContainer/ServidorLabel
+@onready var tokens_label = $HBoxContainer/SidePanel/VBoxContainer/TokensLabel
+@onready var click_label = $HBoxContainer/SidePanel/VBoxContainer/ClickLabel
+@onready var production_label = $HBoxContainer/SidePanel/VBoxContainer/ProductionLabel
+@onready var upgrades_container = $HBoxContainer/ContentPanel/ScrollContainer/UpgradesContainer
 
 # ==========================
 # FEATURES
@@ -48,8 +44,8 @@ func _ready():
 	gpu = get_upgrade("gpu")
 	notebook = get_upgrade("notebook")
 	servidor = get_upgrade("servidor")
-	# print(upgrades)
 	load_game()
+	create_upgrade_cards()
 	update_ui()
 
 func _process(delta):
@@ -68,10 +64,6 @@ func update_ui():
 	tokens_label.text = "Tokens: " + str(snapped(tokens, 0.1))
 	click_label.text = "Por Clique: " + str(click_power)
 	production_label.text = "Produção: " + str(auto_production) + "/s"
-	gpu_label.text = get_upgrade_text(gpu)
-	mouse_label.text = get_upgrade_text(mouse)
-	notebook_label.text = get_upgrade_text(notebook)
-	servidor_label.text = get_upgrade_text(servidor)
 
 func load_upgrades():
 	var file = FileAccess.open(
@@ -106,20 +98,21 @@ func buy_upgrade(upgrade):
 		auto_production += upgrade.value
 	upgrade.cost *= upgrade.multiplier
 	update_ui()
-
+	create_upgrade_cards()
+	
 func get_upgrade(id):
 	return upgrades[id]
-
+	
 func get_upgrade_text(upgrade):
 	var text = ""
-	text += upgrade.name
-	text += "\n" + upgrade.description
-	text += "\nCusto: " + str(int(upgrade.cost))
-	text += "\nPossui: " + str(upgrade.owned)
-	if upgrade.type == "click":
-		text += "\n+" + str(upgrade.value) + " Clique"
-	if upgrade.type == "production":
-		text += "\n+" + str(upgrade.value) + " Produção/s"
+	text += upgrade["name"]
+	text += "\n" + upgrade["description"]
+	text += "\nCusto: " + str(int(upgrade["cost"]))
+	text += "\nPossui: " + str(upgrade["owned"])
+	if upgrade["type"] == "click":
+		text += "\n+" + str(upgrade["value"]) + " Clique"
+	if upgrade["type"] == "production":
+		text += "\n+" + str(upgrade["value"]) + " Produção/s"
 	return text
 
 func _on_buy_gpu_button_pressed():
@@ -180,3 +173,26 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
 		get_tree().quit()
+
+func create_upgrade_cards():
+	for child in upgrades_container.get_children():
+		child.queue_free()
+	for id in upgrades:
+		var upgrade = upgrades[id]
+		if not upgrade["visible"]:
+			continue
+		var card = PanelContainer.new()
+		var vbox = VBoxContainer.new()
+		var label = Label.new()
+		var button = Button.new()
+		label.text = get_upgrade_text(upgrade)
+		button.text = "COMPRAR"
+		button.pressed.connect(
+			func():
+				buy_upgrade(upgrade)
+		)
+		card.add_child(vbox)
+		vbox.add_child(label)
+		vbox.add_child(button)
+		upgrades_container.add_child(card)
+		upgrades_container.add_child(label)
