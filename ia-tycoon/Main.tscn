@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bmn5auccieukr"]
+
+[ext_resource type="Script" uid="uid://cj0ouud527yw7" path="res://main.gd" id="1_glv2v"]
+
+[node name="Node2D" type="Node2D" unique_id=1841445413]
+
+[node name="Main" type="Control" parent="." unique_id=2039311344]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_glv2v")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main" unique_id=513027459]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/ScrollContainer" unique_id=1256449994]
+layout_mode = 2
+
+[node name="TokensLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=406264933]
+layout_mode = 2
+text = "Tokens: 0"
+
+[node name="ClickLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1120490392]
+layout_mode = 2
+text = "Por Clique: 1"
+
+[node name="ProductionLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1898629965]
+layout_mode = 2
+text = "Produção: 0/s"
+
+[node name="TrainButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=1250217049]
+layout_mode = 2
+text = "TREINAR IA"
+
+[node name="MouseLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1478327834]
+layout_mode = 2
+text = "Mouse Gamer
+
+Custo: 25
+
+Possui: 0"
+
+[node name="BuyMouseButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=1282929085]
+layout_mode = 2
+text = "COMPRAR MOUSE"
+
+[node name="GpuLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1653974807]
+layout_mode = 2
+text = "GPU Usada
+Custo: 50
+Possui: 0"
+
+[node name="BuyGpuButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=210179593]
+layout_mode = 2
+text = "COMPRAR GPU"
+
+[node name="NotebookLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=195104320]
+layout_mode = 2
+text = "Notebook Gamer
+
+Custo: 250
+
+Possui: 0"
+
+[node name="BuyNotebookButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=1217588870]
+layout_mode = 2
+text = "COMPRAR NOTEBOOK"
+
+[node name="FreelancerLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1362855564]
+layout_mode = 2
+text = "Freelancer"
+
+[node name="BuyFreelancerButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=72274069]
+layout_mode = 2
+text = "COMPRAR FREELANCER"
+
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/TrainButton" to="Main" method="_on_train_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyMouseButton" to="Main" method="_on_buy_mouse_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyGpuButton" to="Main" method="_on_buy_gpu_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyNotebookButton" to="Main" method="_on_buy_notebook_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyFreelancerButton" to="Main" method="_on_buy_freelancer_button_pressed"]

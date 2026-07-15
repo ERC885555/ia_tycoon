@@ -1,0 +1,41 @@
+{
+  "mouse": {
+	"name": "Mouse Gamer",
+	"description": "A produtividade aumentou. Sua precisão não.",
+	"cost": 25,
+	"owned": 0,
+	"type": "click",
+	"value": 1,
+	"multiplier": 1.35
+  },
+
+  "gpu": {
+	"name": "GPU Usada",
+	"description": "Comprada de um sujeito muito convincente na internet.",
+	"cost": 50,
+	"owned": 0,
+	"type": "production",
+	"value": 1,
+	"multiplier": 1.30
+  },
+
+  "notebook": {
+	"name": "Notebook Gamer",
+	"description": "Esquenta mais do que produz.",
+	"cost": 500,
+	"owned": 0,
+	"type": "production",
+	"value": 5,
+	"multiplier": 1.45
+  },
+
+  "freelancer": {
+	"name": "Freelancer",
+	"description": "Disponível 24h por dia. Responde em 72h.",
+	"cost": 2500,
+	"owned": 0,
+	"type": "production",
+	"value": 25,
+	"multiplier": 1.50
+  }
+}
