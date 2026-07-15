@@ -11,8 +11,13 @@ extends Control
 @onready var mouse_label = $ScrollContainer/VBoxContainer/MouseLabel
 @onready var gpu_label = $ScrollContainer/VBoxContainer/GpuLabel
 @onready var notebook_label = $ScrollContainer/VBoxContainer/NotebookLabel
-@onready var freelancer_label = $ScrollContainer/VBoxContainer/FreelancerLabel
+@onready var servidor_label = $ScrollContainer/VBoxContainer/ServidorLabel
 
+# ==========================
+# FEATURES
+# ==========================
+
+var autosave_timer = 0.0
 
 # ==========================
 # PLAYER STATS
@@ -31,7 +36,7 @@ var upgrades = {}
 var mouse
 var gpu
 var notebook
-var freelancer
+var servidor
 
 # ==========================
 # INICIO FUNCOES
@@ -42,12 +47,17 @@ func _ready():
 	mouse = get_upgrade("mouse")
 	gpu = get_upgrade("gpu")
 	notebook = get_upgrade("notebook")
-	freelancer = get_upgrade("freelancer")
+	servidor = get_upgrade("servidor")
 	# print(upgrades)
+	load_game()
 	update_ui()
 
 func _process(delta):
 	tokens += auto_production * delta
+	autosave_timer += delta
+	if autosave_timer >= 10:
+		save_game()
+		autosave_timer = 0
 	update_ui()
 
 func _on_train_button_pressed():
@@ -61,13 +71,12 @@ func update_ui():
 	gpu_label.text = get_upgrade_text(gpu)
 	mouse_label.text = get_upgrade_text(mouse)
 	notebook_label.text = get_upgrade_text(notebook)
-	freelancer_label.text = get_upgrade_text(freelancer)
+	servidor_label.text = get_upgrade_text(servidor)
 
 func load_upgrades():
 	var file = FileAccess.open(
 		"res://data/upgrades.json",
 		FileAccess.READ
-		
 	)
 	var json_text = file.get_as_text()
 	# print(json_text)
@@ -123,11 +132,51 @@ func _on_buy_notebook_button_pressed():
 	buy_upgrade(notebook)
 
 
-func _on_buy_freelancer_button_pressed():
-	buy_upgrade(freelancer)
+func _on_buy_servidor_button_pressed():
+	buy_upgrade(servidor)
 
 func save_game():
-	pass
+	var save_data = {
+		"tokens": tokens,
+		"click_power": click_power,
+		"auto_production": auto_production,
+		"upgrades": upgrades
+	}
+	var file = FileAccess.open(
+		"user://save.json",
+		FileAccess.WRITE
+	)
+	file.store_string(
+		JSON.stringify(save_data)
+	)
+	print("Jogo salvo!")
+
 	
 func load_game():
-	pass
+	if not FileAccess.file_exists(
+		"user://save.json"
+	):
+		return
+	var file = FileAccess.open(
+		"user://save.json",
+		FileAccess.READ
+	)
+	var data = JSON.parse_string(
+		file.get_as_text()
+	)
+	if data == null:
+		return
+	tokens = data["tokens"]
+	click_power = data["click_power"]
+	auto_production = data["auto_production"]
+	upgrades = data["upgrades"]
+	mouse = get_upgrade("mouse")
+	gpu = get_upgrade("gpu")
+	notebook = get_upgrade("notebook")
+	servidor = get_upgrade("servidor")
+	print("Jogo carregado!")
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+		get_tree().quit()

@@ -29,9 +29,9 @@
 	"multiplier": 1.45
   },
 
-  "freelancer": {
-	"name": "Freelancer",
-	"description": "Disponível 24h por dia. Responde em 72h.",
+  "servidor": {
+	"name": "Servidor",
+	"description": "Ele nunca dorme. Só trava nos piores momentos.",
 	"cost": 2500,
 	"owned": 0,
 	"type": "production",

@@ -69,16 +69,20 @@ Possui: 0"
 layout_mode = 2
 text = "COMPRAR NOTEBOOK"
 
-[node name="FreelancerLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1362855564]
+[node name="ServidorLabel" type="Label" parent="Main/ScrollContainer/VBoxContainer" unique_id=1362855564]
 layout_mode = 2
-text = "Freelancer"
+text = "Servidor
 
-[node name="BuyFreelancerButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=72274069]
+Custo: 2.500
+
+Possui: 0"
+
+[node name="BuyServidorButton" type="Button" parent="Main/ScrollContainer/VBoxContainer" unique_id=72274069]
 layout_mode = 2
-text = "COMPRAR FREELANCER"
+text = "COMPRAR SERVIDOR"
 
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/TrainButton" to="Main" method="_on_train_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyMouseButton" to="Main" method="_on_buy_mouse_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyGpuButton" to="Main" method="_on_buy_gpu_button_pressed"]
 [connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyNotebookButton" to="Main" method="_on_buy_notebook_button_pressed"]
-[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyFreelancerButton" to="Main" method="_on_buy_freelancer_button_pressed"]
+[connection signal="pressed" from="Main/ScrollContainer/VBoxContainer/BuyServidorButton" to="Main" method="_on_buy_freelancer_button_pressed"]
